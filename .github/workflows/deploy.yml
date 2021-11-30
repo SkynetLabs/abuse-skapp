@@ -2,8 +2,7 @@ name: Deploy to Skynet
 
 on:
   push:
-    branches:
-      - master
+    branches: [main]
   pull_request:
 
 jobs:
@@ -27,4 +26,4 @@ jobs:
         with:
           upload-dir: build
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          registry-seed: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && secrets.SKYNET_REGISTRY_SEED || '' }}
+          registry-seed: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.SKYNET_REGISTRY_SEED || '' }}
