@@ -1,7 +1,6 @@
 .App {
-  text-align: center;
+  font-size: 14px;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,14 +13,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  text-align: left;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .App-link {
@@ -35,4 +34,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.card-header {
+  text-align: center;
+}
+
+form {
+  padding: 5px 20px;
+}
+
+.card-body label {
+  margin-right: 10px;
+}
+.card-body input[type="checkbox"] {
+  margin-right: 5px;
+}
+.info input {
+  float: right;
+  clear: both;
+}
+
+.error {
+  display: block;
+  color: red;
+  font-size: 12px;
+  /* float: left;
+  clear: both; */
 }
