@@ -28,6 +28,7 @@ function App() {
 
     const requestOptions = {
       method: 'POST',
+      credentials: 'include' as RequestCredentials,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(report)
     };
