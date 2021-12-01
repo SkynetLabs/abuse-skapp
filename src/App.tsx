@@ -32,7 +32,7 @@ function App() {
       body: JSON.stringify(report)
     };
     
-    fetch('https://siasky.net/abuse', requestOptions)
+    fetch('https://dev1.siasky.dev/abuse/block', requestOptions)
       .then(response => response.json())
       .then(() => {
           console.log('successfully posted data')
