@@ -19,9 +19,7 @@ Run `yarn build` and update the `build` (as a) directory to Skynet.
 
 ## Skapp
 
-Currently deployed here:
-https://vg2epksr2mhaq1sjbfbqu6glpvp2ucuh1ebg502nirr9o87qqot6isg.siasky.net/ but
-not hooked up to the API yet.
+Deployed but not hooked up to the API yet.
 ## TODOs
 
 - [ ] use React bootstrap for the form
