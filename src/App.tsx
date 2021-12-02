@@ -42,8 +42,9 @@ function App() {
         }
 
         console.log('received response', response)
-        if (response.status !== 200) {
-          toast("Something went wrong, see log for more details")
+        const okResponses = [200, 201, 204]
+        if (!okResponses.includes(response.status)) {
+          toast("Something went wrong")
           console.log('block failed, unexpected status', response.status)
           return;
         }
@@ -60,7 +61,7 @@ function App() {
         reset();
       })
       .catch(error => {
-        toast("Something went wrong, see log for more details")
+        toast("Something went wrong")
         console.log('block failed, err', error)
       } );
   };
