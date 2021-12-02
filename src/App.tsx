@@ -28,7 +28,7 @@ function App() {
 
     const requestOptions = {
       method: 'POST',
-      mode: "no-cors" as RequestMode,
+      // mode: "no-cors" as RequestMode,
       credentials: 'include' as RequestCredentials,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(report)
