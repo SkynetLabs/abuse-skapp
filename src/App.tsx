@@ -34,16 +34,34 @@ function App() {
     };
     
     fetch('https://dev1.siasky.dev/abuse/block', requestOptions)
-      .then(response => response.json())
-      .then(() => {
-          console.log('successfully posted data')
-      })
-      .catch(error => console.log('failed to post data, err', error));
+      .then(response => {
+        if (response.status === 401) {
+          toast("You are not authenticated")
+          return;
+        }
 
-    // TODO: move this into the success handler
-    toast("Thank you for reporting!")
-    reset();
-    console.log('reset done')
+        console.log('received response', response)
+        if (response.status !== 200) {
+          toast("Something went wrong, see log for more details")
+          console.log('block failed, unexpected status', response.status)
+          return;
+        }
+
+        return response.json()
+      })
+      .then((data) => {
+        if (!data) {
+          return;
+        }
+
+        console.log('block succeeded, res: ', data)
+        toast("Thank you for reporting!")
+        reset();
+      })
+      .catch(error => {
+        toast("Something went wrong, see log for more details")
+        console.log('block failed, err', error)
+      } );
   };
   
   return (
