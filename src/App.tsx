@@ -49,7 +49,7 @@ function App() {
           return;
         }
 
-        return response.json()
+        return response.body
       })
       .then((data) => {
         if (!data) {
