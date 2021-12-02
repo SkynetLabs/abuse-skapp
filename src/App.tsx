@@ -34,7 +34,7 @@ function App() {
       body: JSON.stringify(report)
     };
     
-    fetch('https://dev1.siasky.dev/abuse/block', requestOptions)
+    fetch('https://siasky.net/abuse/block', requestOptions)
       .then(response => {
         if (response.status === 401) {
           toast("You are not authenticated")
