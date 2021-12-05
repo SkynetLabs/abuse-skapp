@@ -48,7 +48,7 @@ function App() {
     const skylinks: {[key: string]: boolean} = {};
     const keys = Object.keys(data);
     for (const key of keys) {
-      if (key.startsWith('skylink_')) {
+      if (key.startsWith('skylink_') && data[key]) {
         skylinks[data[key]] = true;
       }
     }
@@ -199,7 +199,7 @@ function App() {
               </div>
 
               <div>
-                <button disabled={isSubmitting} type="submit" className="btn btn-primary">Submit</button>
+                <button disabled={isSubmitting} type="submit" className="btn btn-primary">{isSubmitting ? "Submitting..." : "Submit" }</button>
               </div>
             </form>
           </div>
