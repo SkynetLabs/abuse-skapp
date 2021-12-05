@@ -1,16 +1,6 @@
 .App {
   font-size: 14px;
 }
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   text-align: left;
@@ -19,21 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   color: black;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .card-header {
@@ -50,15 +27,30 @@ form {
 .card-body input[type="checkbox"] {
   margin-right: 5px;
 }
-.info input {
+
+.form-input input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.buttons-add-remove {
   float: right;
-  clear: both;
+  margin-bottom: 20px;
+}
+
+.buttons-add-remove button {
+  margin-left: 10px;
+  min-width: 36px;
+}
+
+.alert {
+  text-align: center;
+  margin-bottom: 2rem !important;
 }
 
 .error {
   display: block;
   color: red;
   font-size: 12px;
-  /* float: left;
-  clear: both; */
+  margin-top: 6px;
 }
