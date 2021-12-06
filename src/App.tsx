@@ -7,9 +7,9 @@ import { useState } from 'react';
 import { css } from 'glamor'
 import { ToastContainer } from 'react-toastify';
 
-const DEBUG = false;
+const DEBUG = true;
 const ABUSE_ENDPOINT = DEBUG
-  ? 'https://siasky.dev/abuse/block'
+  ? 'https://dev1.siasky.dev/abuse/block'
   : 'https://siasky.net/abuse/block';
 
 function App() {
@@ -168,18 +168,13 @@ function App() {
                 <label>Tags:</label>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="copyright" value="copyright"/>
-                <label htmlFor="copyright">copyright violation</label>
-                </div>
-
-                <div>
-                <input {...register('tags')} type="checkbox" id="non-consensual" value="non-consensual"/>
-                <label htmlFor="non-consensual">non-consensual content</label>
-                </div>
-
-                <div>
                 <input {...register('tags')} type="checkbox" id="childabuse" value="childabuse"/>
                 <label htmlFor="childabuse">child abuse content</label>
+                </div>
+
+                <div>
+                <input {...register('tags')} type="checkbox" id="copyright" value="copyright"/>
+                <label htmlFor="copyright">copyright violation</label>
                 </div>
 
                 <div>
@@ -188,14 +183,20 @@ function App() {
                 </div>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="terrorist" value="terrorist"/>
-                <label htmlFor="terrorist">terrorist content</label>
+                <input {...register('tags')} type="checkbox" id="non-consensual" value="non-consensual"/>
+                <label htmlFor="non-consensual">non-consensual content</label>
                 </div>
 
                 <div>
                 <input {...register('tags')} type="checkbox" id="phishing" value="phishing"/>
                 <label htmlFor="phishing">phishing content</label>
                 </div>
+
+                <div>
+                <input {...register('tags')} type="checkbox" id="terrorist" value="terrorist"/>
+                <label htmlFor="terrorist">terrorist content</label>
+                </div>
+
               </div>
 
               <div>
