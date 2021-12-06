@@ -7,9 +7,9 @@ import { useState } from 'react';
 import { css } from 'glamor'
 import { ToastContainer } from 'react-toastify';
 
-const DEBUG = false;
+const DEBUG = true;
 const ABUSE_ENDPOINT = DEBUG
-  ? 'https://siasky.dev/abuse/block'
+  ? 'https://dev1.siasky.dev/abuse/block'
   : 'https://siasky.net/abuse/block';
 
 function App() {
