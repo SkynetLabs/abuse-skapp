@@ -65,7 +65,7 @@ function App() {
         skylink,
         tags: data.tags
       }
-      console.log('reporting', JSON.stringify(report))
+      console.log('report', JSON.stringify(report))
   
       const requestOptions = {
         method: 'POST',
