@@ -48,6 +48,20 @@ form {
   margin-bottom: 2rem !important;
 }
 
+.alert a:link {
+  color: #664d03;
+}
+.alert a:visited {
+  color: #664d03;
+}
+.alert a:hover {
+  color: #664d03;
+  text-decoration: none;
+}
+.alert a:active {
+  color: #664d03;
+}
+
 .error {
   display: block;
   color: red;

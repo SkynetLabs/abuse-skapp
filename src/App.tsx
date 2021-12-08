@@ -113,7 +113,7 @@ function App() {
     <div className="App">
       <div className="alert alert-warning">
         <strong>NOTE: </strong>
-        you must be logged in with a Skynet account to be able to report abuse
+        you must be logged in with a <a href="https://account.siasky.net/" target="_blank"> Skynet account</a> to be able to report abuse
       </div>
 
       <header className="App-header">
