@@ -117,7 +117,7 @@ function App() {
       </div>
 
       <header className="App-header">
-        <div className="card m-3" style={{minWidth: '500px'}}>
+        <div className="card m-3">
           <h5 className="card-header">Skynet Abuse Form</h5>
           <div className="card-body row g-2">
             
