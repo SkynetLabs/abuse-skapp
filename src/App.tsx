@@ -7,9 +7,9 @@ import { useState } from 'react';
 import { css } from 'glamor'
 import { ToastContainer } from 'react-toastify';
 
-const DEBUG = false;
+const DEBUG = true;
 const ABUSE_ENDPOINT = DEBUG
-  ? 'https://siasky.dev/abuse/block'
+  ? 'https://dev1.siasky.dev/abuse/block'
   : 'https://siasky.net/abuse/block';
 
 function App() {
@@ -111,10 +111,10 @@ function App() {
   
   return (
     <div className="App">
-      <div className="alert alert-warning">
+      {/* <div className="alert alert-warning">
         <strong>NOTE: </strong>
         you must be logged in with a <a href="https://account.siasky.net/" target="_blank" rel="noopener noreferrer"> Skynet account</a> to be able to report abuse
-      </div>
+      </div> */}
 
       <header className="App-header">
         <div className="card m-3">
