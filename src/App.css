@@ -13,12 +13,12 @@
   color: black;
 }
 
-.card-header {
-  text-align: center;
-}
-
 form {
   padding: 5px 20px;
+}
+
+.card-header {
+  text-align: center;
 }
 
 .card-body label {
@@ -33,38 +33,16 @@ form {
   box-sizing: border-box;
 }
 
-.buttons-add-remove {
-  float: right;
-  margin-bottom: 20px;
-}
-
-.buttons-add-remove button {
-  margin-left: 10px;
-  min-width: 36px;
-}
-
-.alert {
-  text-align: center;
-  margin-bottom: 2rem !important;
-}
-
-.alert a:link {
-  color: #664d03;
-}
-.alert a:visited {
-  color: #664d03;
-}
-.alert a:hover {
-  color: #664d03;
-  text-decoration: none;
-}
-.alert a:active {
-  color: #664d03;
-}
-
 .error {
   display: block;
   color: red;
   font-size: 12px;
   margin-top: 6px;
+}
+
+.note {
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 0px;
+  color: gray;
 }

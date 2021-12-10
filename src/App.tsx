@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
 import { css } from 'glamor'
 import { ToastContainer } from 'react-toastify';
 
@@ -12,10 +11,18 @@ const ABUSE_ENDPOINT = DEBUG
   ? 'https://dev1.siasky.dev/abuse/block'
   : 'https://siasky.net/abuse/block';
 
+type FormData = {
+  reporterName: string;
+  reporterEmail: string;
+  skylinks: string;
+  tags: string[];
+}
+
 function App() {
   const {
     register,
     handleSubmit,
+    watch,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -23,7 +30,7 @@ function App() {
     reValidateMode: "onChange"
   });
 
-  const [skylinkInputs, setSkylinkInputs] = useState([0])
+  const watchSkylinks = watch("skylinks")
 
   // TODO: colors not working yet
   const showSuccess = (msg: string) => {
@@ -43,20 +50,38 @@ function App() {
     })
   }
 
-  const onSubmit = (data: any) => {
-    // aggregate all skylinks
-    const skylinks: {[key: string]: boolean} = {};
-    const keys = Object.keys(data);
-    for (const key of keys) {
-      if (key.startsWith('skylink_') && data[key]) {
-        skylinks[data[key]] = true;
+  const extractSkylinks = (input: string): string[] => {
+    if (!input) {
+      return [];
+    }
+    const skylinksMap: {[key: string]: boolean} = {};
+    for (const line of input.split("\n")) {
+      for (const skylink of line.split(",")) {
+        skylinksMap[skylink.trim()] = true;
+      }
+    }
+    const skylinks = Object.keys(skylinksMap)
+    console.log(skylinks)
+    return skylinks.filter(Boolean)
+  }
+
+  const filterSkylinks = (input: string[]): string[] => {
+    const validated:string[] = [];
+
+    const regEx = new RegExp('^.*([a-z0-9]{55})|([a-zA-Z0-9-_]{46}).*$')
+    for (const skylink of input) {
+      if (regEx.test(skylink)) {
+        validated.push(skylink)
       }
     }
 
-    console.log('skylinks', skylinks)
+    return validated;
+  }
 
+  const onSubmit = (data: FormData) => {
     // report every skykink separately
-    return Promise.all(Object.keys(skylinks).map(skylink => {
+    const skylinks = extractSkylinks(data.skylinks)
+    return Promise.all(skylinks.map(skylink => {
       const report = {
         reporter: {
           name: data.reporterName,
@@ -111,16 +136,10 @@ function App() {
   
   return (
     <div className="App">
-      {/* <div className="alert alert-warning">
-        <strong>NOTE: </strong>
-        you must be logged in with a <a href="https://account.siasky.net/" target="_blank" rel="noopener noreferrer"> Skynet account</a> to be able to report abuse
-      </div> */}
-
       <header className="App-header">
         <div className="card m-3">
           <h5 className="card-header">Skynet Abuse Form</h5>
           <div className="card-body row g-2">
-            
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group form-input">
                 <label>Reporter Name (*):</label>
@@ -135,68 +154,59 @@ function App() {
               </div>
 
               <div className="form-group form-input">
-                <label style={{lineHeight: '36px'}}>Skylinks (*):</label>
-                <div className="buttons-add-remove">
-                  <button type="button" className="btn btn-secondary" onClick={(e) => {
-                    (e.target as any).blur()
-                    setSkylinkInputs([...skylinkInputs, skylinkInputs.length])
-                  }}>+
-                  </button>
-                  <button disabled={skylinkInputs.length===1} type="button" className="btn btn-secondary" onClick={(e) => {
-                    (e.target as any).blur()
-                    if (skylinkInputs.length > 1) {
-                      setSkylinkInputs(skylinkInputs.slice(0, -1))
-                    }
-                  }}>-
-                  </button>
+                <div className="form-group">
+                  <label htmlFor="exampleFormControlTextarea1">Skylinks (*):</label>
+                  <p className="note"><strong>NOTE:</strong><br />
+                  please enter skylinks separated by a comma or new line<br />
+                  currently <strong>{filterSkylinks(extractSkylinks(watchSkylinks)).length}</strong> possible skylinks detected</p>
+
+                  <textarea className="form-control" id="exampleFormControlTextarea1" rows={3}
+                  {...register('skylinks', { required: true })}
+                  ></textarea>
+                  {errors.skylinks && <p className="error">this field is required</p>}
                 </div>
-                {skylinkInputs.map(i => {
-                  const isFirst = i === 0;
-                  return (
-                    <div key={`skylink_${i}`}>
-                      <input
-                        style={{ marginTop: isFirst ? '0px' : '20px' }}
-                        {...register(`skylink_${i}`, { required: isFirst })}
-                      />
-                      { errors[`skylink_${i}`] && <p className="error">this field is required</p> }
-                      </div>
-                  )
-                })}
+
               </div>
 
               <div className="form-group">
-                <label>Tags:</label>
+                <label>Tags: (*)</label>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="childabuse" value="childabuse"/>
+                <input {...register('tags', {validate: v => v.length > 0})} type="checkbox" id="childabuse" value="childabuse"/>
                 <label htmlFor="childabuse">child abuse content</label>
                 </div>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="copyright" value="copyright"/>
+                <input {...register('tags', {validate: v => v.length > 0})} type="checkbox" id="copyright" value="copyright"/>
                 <label htmlFor="copyright">copyright violation</label>
                 </div>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="malware" value="malware"/>
+                <input {...register('tags', {validate: v => v.length > 0})} type="checkbox" id="malware" value="malware"/>
                 <label htmlFor="malware">malware</label>
                 </div>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="non-consensual" value="non-consensual"/>
+                <input {...register('tags', {validate: v => v.length > 0})} type="checkbox" id="non-consensual" value="non-consensual"/>
                 <label htmlFor="non-consensual">non-consensual content</label>
                 </div>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="phishing" value="phishing"/>
+                <input {...register('tags', {validate: v => v.length > 0})} type="checkbox" id="phishing" value="phishing"/>
                 <label htmlFor="phishing">phishing content</label>
                 </div>
 
                 <div>
-                <input {...register('tags')} type="checkbox" id="terrorist" value="terrorist"/>
+                <input {...register('tags', {validate: v => v.length > 0})} type="checkbox" id="terrorist" value="terrorist"/>
                 <label htmlFor="terrorist">terrorist content</label>
                 </div>
 
+                <div>
+                <input {...register('tags', {validate: v => v.length > 0})} type="checkbox" id="abusive" value="abusive"/>
+                <label htmlFor="abusive">other (abusive) content</label>
+                </div>
+
+                {errors.tags && <p className="error">at least one tag is required</p>}
               </div>
 
               <div>
