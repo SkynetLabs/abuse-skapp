@@ -61,7 +61,6 @@ function App() {
       }
     }
     const skylinks = Object.keys(skylinksMap)
-    console.log(skylinks)
     return skylinks.filter(Boolean)
   }
 
