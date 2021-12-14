@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { css } from 'glamor'
 import { ToastContainer } from 'react-toastify';
 
-const DEBUG = true;
+const DEBUG = false;
 const ABUSE_ENDPOINT = DEBUG
   ? 'https://dev1.siasky.dev/abuse/block'
   : 'https://siasky.net/abuse/block';
