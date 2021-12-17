@@ -15,8 +15,8 @@ import './Form.css';
 
 const DEBUG = false;
 const ABUSE_ENDPOINT = DEBUG
-  ? 'https://dev1.siasky.dev/abuse/block'
-  : 'https://siasky.net/abuse/block';
+  ? 'https://dev1.siasky.dev/abuse/powblock'
+  : 'https://siasky.net/abuse/powblock';
 
 type FormData = {
   reporterName: string;

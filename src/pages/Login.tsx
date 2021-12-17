@@ -46,14 +46,12 @@ export default function Login() {
         {authenticated && generatingPoW &&
           <div>
             <p>
-              Thank you for creating an account, you are almost ready to report abuse!
+              Thank you for creating an account, you are almost ready to report abuse!<br />
+              In order to protect our network, we require you to do some proof of work.<br />
               <br />
-              In order to protect our network, we require you to do some proof of work.
-              <br />
-              This is now running in the backgound, you only have to do this once.
-              <br />
-              <br />
-              Please be patient as it might take multiple minutes
+              This is now running in the backgound.<br />
+              Please be patient as it might take multiple minutes.<br />
+              You only have to do this once.
             </p>
             <div className="d-flex justify-content-center">
               <Spinner animation="border" variant="primary" />
