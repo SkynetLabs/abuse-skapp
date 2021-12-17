@@ -44,6 +44,9 @@ export class MySkyProofGenerator {
       return res.data as MySkyProof;
     }
 
+    // register the start
+    const start = new Date().getTime();
+
     // fetch the user's MySky ID
     const mySkyId = await mySky.userID();
     const pubkey = fromHexString(mySkyId);
@@ -52,8 +55,11 @@ export class MySkyProofGenerator {
     }
 
     // do the work
+    let cnt = 0;
     let proofBytes: Uint8Array;
     while (true) {
+      cnt++;
+
       // generate a new proof
       proofBytes = this.proofBytes(pubkey);
       const pow = Buffer.from(this.proofHash(proofBytes));
@@ -61,12 +67,20 @@ export class MySkyProofGenerator {
       // if we have not hit the target yet, increase nonce and continue
       if (compare(this.target, pow) <= 0) {
         this.nonce = this.nonce + BigInt(1);
+        if (cnt % 1e6 === 0) {
+          console.log("still churning, current nonce", this.nonce);
+        }
         continue;
       }
 
       // we found a nonce that exceeds our target
       break;
     }
+
+    // log the time it took
+    const end = new Date().getTime();
+    const elapsed = Math.round((end - start) / 1000);
+    console.log(`took ${elapsed}s`);
 
     // create the signature
     const signature = await mySky.signMessage(proofBytes);
