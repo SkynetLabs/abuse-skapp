@@ -98,7 +98,7 @@ export default function Form() {
         },
         skylink,
         tags: data.tags,
-        pow: JSON.stringify(proof)
+        pow: proof
       }
       console.log('report', JSON.stringify(report))
   

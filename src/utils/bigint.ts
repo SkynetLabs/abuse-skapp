@@ -16,5 +16,6 @@ export function bnToBuf(bn: bigint) {
     j += 2;
   }
 
-  return u8;
+  // little endian
+  return u8.reverse();
 }
