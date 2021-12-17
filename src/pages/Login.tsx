@@ -24,6 +24,7 @@ export default function Login() {
   
   // redirect the user if he's authenticated
   if (authenticated && proofOfWorkOK) {
+    console.log('proof', proof)
     return (
       <Redirect to={{ pathname: "/" }} />
     );
