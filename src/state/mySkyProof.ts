@@ -13,16 +13,22 @@ export type MySkyProof = {
   signature: string;
 };
 
+// PROOF_VERSION_V1 is the first version of the proof
 const PROOF_VERSION_V1 = 1;
+
+// PROOF_VERSION_V1_STR is the first version of the proof as string
 const PROOF_VERSION_V1_STR = "MySkyID-PoW-v1";
 
+// PROOF_TARGET is the target for the PoW
 const PROOF_TARGET = new Uint8Array([
   0, 0, 2, 85, 134, 217, 6, 168, 28, 68, 106, 164, 207, 53, 55, 178, 24, 81,
   162, 117, 144, 30, 90, 200, 147, 120, 124, 181, 32, 216, 184, 223,
 ]);
 
+// PROOF_HASH_IDENTIFIER is the personalization used in the K12 hashing algo
 const PROOF_HASH_IDENTIFIER = "MySkyProof";
 
+// PATH_MYSKY_PROOF is the path of the MySky proof
 const PATH_MYSKY_PROOF = `${dataDomain}/myskyproof.json`;
 
 export class MySkyProofGenerator {
