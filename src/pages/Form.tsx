@@ -13,7 +13,7 @@ import MySkyButton from '../components/MySkyButton';
 import { MySkyContext } from '../state/mySky';
 import './Form.css';
 
-const DEBUG = false;
+const DEBUG = true;
 const ABUSE_ENDPOINT = DEBUG
   ? 'https://dev1.siasky.dev/abuse/powblock'
   : 'https://siasky.net/abuse/powblock';
