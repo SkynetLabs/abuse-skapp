@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -16,4 +15,6 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-registerServiceWorker();
+
+// TODO: enable when we generate the proof using a service worker
+// registerServiceWorker();
