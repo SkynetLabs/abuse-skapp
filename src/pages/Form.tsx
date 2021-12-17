@@ -104,7 +104,6 @@ export default function Form() {
   
       const requestOptions = {
         method: 'POST',
-        mode: "no-cors" as RequestMode,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(report)
       };
