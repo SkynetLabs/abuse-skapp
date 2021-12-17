@@ -45,7 +45,7 @@ export default function Login() {
         }
         {authenticated && generatingPoW &&
           <div>
-            <p>
+            <p style={{marginBottom: '20px'}}>
               Thank you for creating an account, you are almost ready to report abuse!<br />
               In order to protect our network, we require you to do some proof of work.<br />
               <br />

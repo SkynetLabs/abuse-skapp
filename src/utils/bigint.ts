@@ -1,4 +1,6 @@
 // source: https://coolaj86.com/articles/convert-js-bigints-to-typedarrays/
+//
+// TODO: we should be using a DataView here
 export function bnToBuf(bn: bigint) {
   var hex = BigInt(bn).toString(16);
   if (hex.length % 2) {
