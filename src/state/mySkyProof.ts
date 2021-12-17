@@ -2,8 +2,7 @@ import { bnToBuf } from "../utils/bigint";
 import { k12 } from "@noble/hashes/lib/sha3-addons";
 import compare from "buffer-compare";
 import { MySky } from "skynet-js";
-import { fromHexString } from "../utils/strings";
-import { toHexString } from "skynet-js/dist/cjs/utils/string";
+import { fromHexString, toHexString } from "../utils/strings";
 
 export const dataDomain = "localhost";
 
