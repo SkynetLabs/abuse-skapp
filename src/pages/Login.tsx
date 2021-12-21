@@ -47,10 +47,10 @@ export default function Login() {
           <div>
             <p style={{marginBottom: '20px'}}>
               Thank you for creating an account, you are almost ready to report abuse!<br />
-              In order to protect our network, we require you to do some proof of work.<br />
+              For spam protection, we require your browser to do some math for us.<br />
               <br />
-              This is now running in the backgound.<br />
-              Please be patient as it might take multiple minutes.<br />
+              The calculations are now running in the backgound,<br />
+              please be patient as it might take a minute.<br />
               You only have to do this once.
             </p>
             <div className="d-flex justify-content-center">
