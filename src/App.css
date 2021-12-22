@@ -1,8 +1,5 @@
 .App {
   font-size: 14px;
-}
-
-.App-header {
   text-align: left;
   background-color: #ffffff;
   min-height: 100vh;
@@ -13,36 +10,18 @@
   color: black;
 }
 
-form {
-  padding: 5px 20px;
-}
-
-.card-header {
-  text-align: center;
-}
-
-.card-body label {
-  margin-right: 10px;
-}
-.card-body input[type="checkbox"] {
-  margin-right: 5px;
-}
-
-.form-input input {
+.mysky-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white !important;
   width: 100%;
-  box-sizing: border-box;
 }
 
-.error {
-  display: block;
-  color: red;
-  font-size: 12px;
-  margin-top: 6px;
+.card {
+  min-height: 300px;
 }
 
-.note {
-  font-size: 12px;
-  margin-bottom: 10px;
-  padding: 0px;
-  color: gray;
+button {
+  width: 100%;
 }
