@@ -1,6 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
-import { ReactComponent as Spinner } from "../svg/Spinner.svg";
+import { Spinner } from 'react-bootstrap';
 import { MySkyContext } from "../state/mySky";
 
 export const MySkyButton = () => {
@@ -20,7 +20,7 @@ export const MySkyButton = () => {
       {/* logging in */}
       {userLoggingIn && (
         <button className={classNames(className, "cursor-auto")} disabled={true}>
-          <Spinner className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" /> Waiting for authentication
+          <Spinner animation="border" variant="primary" style={{marginRight: '20px'}}/> Waiting for authentication
         </button>
       )}
 
