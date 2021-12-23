@@ -9,7 +9,7 @@ import skynetClient from "../services/skynetClient";
 import { MySkyProof, MySkyProofGenerator } from "./mySkyProof";
 
 // TODO: this should be an hns domain
-export const dataDomain = "0404guluqu38oaqapku91ed11kbhkge55smh9lhjukmlrj37lfpm8no";
+// export const dataDomain = "0404guluqu38oaqapku91ed11kbhkge55smh9lhjukmlrj37lfpm8no";
 
 export type MySkyState = {
   mySky: MySky|null;
@@ -44,7 +44,7 @@ export function MySkyProvider({ children }: { children: ReactNode }) {
       setState((state) => ({ ...state, mySkyLoading: true }));
 
       // load MySky
-      const mySky = await skynetClient.loadMySky(dataDomain);
+      const mySky = await skynetClient.loadMySky();
 
       // log in the user
       try {
