@@ -4,7 +4,6 @@ import compare from "buffer-compare";
 import { MySky } from "skynet-js";
 import { fromHexString, toHexString } from "../utils/strings";
 
-export const dataDomain = "localhost";
 
 export type MySkyProof = {
   version: string;
@@ -29,7 +28,9 @@ const PROOF_TARGET = new Uint8Array([
 const PROOF_HASH_IDENTIFIER = "MySkyProof";
 
 // PATH_MYSKY_PROOF is the path of the MySky proof
-const PATH_MYSKY_PROOF = `${dataDomain}/myskyproof.json`;
+// TODO: temporarily disabled 
+// export const dataDomain = "localhost]";
+// const PATH_MYSKY_PROOF = `${dataDomain}/myskyproof.json`;
 
 export class MySkyProofGenerator {
   private nonce: bigint;
@@ -42,18 +43,25 @@ export class MySkyProofGenerator {
   }
 
   public async generate(mySky: MySky): Promise<MySkyProof> {
-    // try and fetch the proof
-    const res = await mySky.getJSONEncrypted(PATH_MYSKY_PROOF);
-    if (res.data) {
-      // TODO: add validation
-      return res.data as MySkyProof;
+    const mySkyId = await mySky.userID();
+
+    // fetch proof from local storage
+    const proofStr = localStorage.getItem(`${mySkyId}-MySky-PoW`);
+    if (proofStr) {
+      return JSON.parse(proofStr) as MySkyProof;
     }
+
+    // try and fetch the proof
+    // const res = await mySky.getJSONEncrypted(PATH_MYSKY_PROOF);
+    // if (res.data) {
+    //   // TODO: add validation
+    //   return res.data as MySkyProof;
+    // }
 
     // register the start
     const start = new Date().getTime();
 
     // fetch the user's MySky ID
-    const mySkyId = await mySky.userID();
     const pubkey = fromHexString(mySkyId);
     if (!pubkey) {
       throw new Error("invalid mysky id");
@@ -99,7 +107,8 @@ export class MySkyProofGenerator {
     };
 
     // save it and return it
-    await mySky.setJSONEncrypted(PATH_MYSKY_PROOF, proof);
+    localStorage.setItem(`${mySkyId}-MySky-PoW`, JSON.stringify(proof));
+    // await mySky.setJSONEncrypted(PATH_MYSKY_PROOF, proof);
     return proof;
   }
 

@@ -36,7 +36,6 @@ function Authenticated({ children }: { children: ReactNode }) {
 }
 
 function App() {
-  
   return (
     <>
       <div className="App">
